@@ -34,6 +34,9 @@ class GameMgmt {
                 where: {
                     user_id,
                     is_success: 0
+                },
+                include:{
+                    model:models.TREASURES_LIST
                 }
             })
             if (nowgame == null) {

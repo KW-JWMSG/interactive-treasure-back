@@ -20,10 +20,11 @@ const init = async server => {
         const UserMgmt = require('./service/UserMgmt')
         const authService = new UserMgmt()
         tokenChk = await authService.login_verify(req.cookies.JWMSG_LGN_TOKEN)
-        if (tokenChk.success) {
-            req.user_info = tokenChk.data.tokenData
-            req.is_login = tokenChk.data.login
-        }
+        if (tokenChk)
+            if (tokenChk.success) {
+                req.user_info = tokenChk.data.tokenData
+                req.is_login = tokenChk.data.login
+            }
         next()
     })
 
